@@ -1,104 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meowzers' Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --pastel-pink: #ffcce0;
+            --pastel-blue: #cce0ff;
+            --pastel-yellow: #fff3cc;
+            --text-color: #555;
+            --bg-color: #fffaf0;
+        }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-color); margin: 0; padding: 20px; text-align: center; }
+        .card { background: white; border-radius: 20px; padding: 20px; margin: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: inline-block; width: 300px; border: 2px solid var(--pastel-pink); vertical-align: top; text-align: left; }
+        .card img { border-radius: 10px; width: 100%; height: 160px; object-fit: cover; border: none; margin-bottom: 10px; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        h1, h2 { color: #ff99bb; }
+        .profile-pic { border-radius: 50%; width: 120px; height: 120px; object-fit: cover; border: 3px solid var(--pastel-blue); }
+    </style>
+</head>
+<body>
 
-Gemini
-New chat
-Search chats
-Daily brief
-Images
-Videos
-Library
-New notebook
-Peregrino
-Fernwood
-Cutesie Portfolio Site Generator
-Google Apps Script API Update Fix
-where is the key for this room in project zomboid knox vault
-Terrain Mesh Vertex Control Points
-Update Spreadsheet With API Data
-Diagram Tools For Coding Projects
-Fixing Weld Constraints in Roblox Script
-School Supplies: Needed vs. Nice
-Understanding GitHub Portfolio Pages
-Fixing Tree "Teleporting" Visual Glitch
-Chopping UI Mechanics Ideas
-How to Import OBJ Files in Blender
-Improving Roblox Avatar Rig Structure
-ProfileStore: First Load and Save Events
-Fix Lua Default Parameter Syntax
-Customizing Roblox Studio Scale Handles
-Course Start Date Inquiry
-Scale Multiple Roblox Parts One Axis
-Dual Boot Fedora, Windows, Shared Data
-Lua Module Init Question
-Connect Menu Visibility Changed Event
-Admin UI Redesign For Roblox
-Necesse Brightness Mod Request
-Necesse Cryo Queen Best Loadouts
-Delete Dimension Text in AutoCAD
-Game Development Platform Inquiry
-Necesse Money Farming Strategy
-Map Improvements for Lumber Tycoon
-Necesse Progression After Defeating Reaper
-Combine Script Features For Item Update
-Furnace Evolution Image Generation
-Excalidraw, Twitch, and Python
-Conversation with Gemini
-make me a cutesie portfolio site i can use on github, give me an html file and a js file, where i can easily create new instances of creations and apps ive touched and like my contritbution to stuff the format should be:
+    <section id="about">
+        <h1>Hi! I'm <span id="username">Meowzers</span> (Benjamin Smith)</h1>
+        <img src="https://cdn.discordapp.com/avatars/269904483235004418/95c3651e2e09909d7af6d5b1351e9a9c.webp?size=1024" alt="Profile Picture" class="profile-pic">
+        <div id="skills">
+            <h2>My Skills</h2>
+            <p>Coding Guru, Luau, Python, Blender, AutoCAD</p>
+        </div>
+        <div id="contact">
+            <h2>Contact</h2>
+            <p>Reach out to me on Discord or GitHub!</p>
+        </div>
+    </section>
 
-about me: username, pfp, skills, contact information etc
+    <section id="creations">
+        <h2>My Creations</h2>
+        <div class="grid" id="creations-container"></div>
+    </section>
 
-creations
+    <section id="contributions">
+        <h2>My Contributions</h2>
+        <div class="grid" id="contributions-container"></div>
+    </section>
 
-various contributions
-
-Your files are ready! I've created a cutesie, easy-to-update portfolio structure.
-
-Your portfolio files are ready:
-
-HTML icon
-portfolio
- HTML 
-Open
-JS icon
-script
- JS 
-Open
-How to use this:
-Updating Content: Open script.js. You will see two arrays: creations and contributions. To add a new project, just add a new line inside the appropriate array following the { title: "...", description: "..." }, format.
-
-Customization: I included some basic CSS in the <style> block in portfolio.html. Feel free to change the colors in the :root variables to whatever pastel theme you prefer!
-
-GitHub Pages: To host this on GitHub, just upload these files to a repository named username.github.io (or a repo with the name of your choice), enable "GitHub Pages" in the repository settings, and your portfolio will be live.
-
-
-
-
-Gemini is AI and can make mistakes.
-
-// Easily add your items here!
-
-const creations = [
-    { title: "Fernwood", description: "A tycoon-style building game." },
-    { title: "Meowzers' Studio", description: "Game dev and community entity." }
-];
-
-const contributions = [
-    { title: "Necesse Modding", description: "Custom lighting scripts." },
-    { title: "Discord Bot", description: "Backend Python infrastructure." }
-];
-
-function renderItems(containerId, data) {
-    const container = document.getElementById(containerId);
-    data.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'card';
-        div.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
-        container.appendChild(div);
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderItems('creations-container', creations);
-    renderItems('contributions-container', contributions);
-});
-script.js
-Displaying script.js.
+    <script src="script.js"></script>
+</body>
+</html>
