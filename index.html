@@ -6,35 +6,40 @@
     <title>Meowzers' Portfolio</title>
     <style>
         :root {
-            --primary-color: #3e48d8;
-            --pfp-border-color: #560000;
-            --background-color: #210061;
-            --text-color: #555;
-            --secondary-color: #5b3f7a;
+            --primary-color: #7a0010; /* Dark Red Accent */
+            --pfp-border-color: #8b0000; /* Dark Red */
+            --background-color: #1a0529; /* Dark Purple */
+            --text-color: #e0ccff; /* Light Purple Text */
+            --secondary-color: #2b1142; /* Lighter Dark Purple for cards */
+            --heading-color: #ffffff; /* White headers */
         }
+        
         body { 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background-color: var(--secondary-color); 
+            background-color: var(--background-color); 
             color: var(--text-color); 
             margin: 0; 
             padding: 20px; 
             text-align: center; 
         }
+        
         section {
             margin-bottom: 40px;
         }
+        
         .card { 
-            background: white; 
+            background: var(--secondary-color); 
             border-radius: 20px; 
             padding: 20px; 
             margin: 10px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
             display: inline-block; 
             width: 300px; 
             border: 2px solid var(--primary-color); 
             vertical-align: top; 
             text-align: left; 
         }
+        
         .card img { 
             border-radius: 10px; 
             width: 100%; 
@@ -43,21 +48,47 @@
             border: none; 
             margin-bottom: 10px; 
         }
+        
         .grid { 
             display: flex; 
             flex-wrap: wrap; 
             justify-content: center; 
             gap: 20px; 
         }
-        h1, h2 { 
-            color: #ff99bb; 
+        
+        h1, h2, h3 { 
+            color: var(--heading-color); 
         }
+        
+        h3 {
+            margin-top: 0;
+        }
+        
         .profile-pic { 
             border-radius: 50%; 
             width: 120px; 
             height: 120px; 
             object-fit: cover; 
             border: 3px solid var(--pfp-border-color); 
+        }
+        
+        .info-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .info-block {
+            background: var(--secondary-color);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 2px solid var(--primary-color);
+            max-width: 300px;
+            text-align: left;
+            flex: 1;
+            min-width: 250px;
         }
     </style>
 </head>
@@ -66,11 +97,23 @@
     <section id="about">
         <h1>Hi! I'm <span id="username">Meowzers</span></h1>
         <img src="https://cdn.discordapp.com/avatars/269904483235004418/95c3651e2e09909d7af6d5b1351e9a9c.webp?size=1024" alt="Profile Picture" class="profile-pic">
-        <div id="skills">
-            <h2>My Skills</h2>
-            <p>Coding Guru, Luau, Python, Blender, AutoCAD</p>
+        
+        <div class="info-section">
+            <div class="info-block">
+                <h2>Software</h2>
+                <p>LibreSprite, AutoCAD, Blender, Figma, Google Apps</p>
+            </div>
+            <div class="info-block">
+                <h2>Languages</h2>
+                <p>English, Dutch, Morse Code, JavaScript / TypeScript, Python, Lua/u, Rust</p>
+            </div>
+            <div class="info-block">
+                <h2>Misc Hobbies</h2>
+                <p>Chess, Reading, Writing, Coding, Game Design</p>
+            </div>
         </div>
-        <div id="contact">
+
+        <div id="contact" style="margin-top: 30px;">
             <h2>Contact</h2>
             <p>Reach out to me on Discord (meowzers1)</p>
         </div>
@@ -87,27 +130,26 @@
     </section>
 
     <script>
-        // Easily add your items here! Just include an 'image' property if you want to show a project screenshot!
         const creations = [
             { 
                 title: "Fernwood", 
-                description: "A tycoon-style building game built with custom mechanics and building.", 
-                image: "https://placehold.co/600x400/ffcce0/555?text=Fernwood" 
+                description: "A 2D top-down sandbox lumber tycoon game featuring custom tree-chopping mini-games, autotiling grids, and dense asset plot mechanics.", 
+                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Fernwood" 
             },
             { 
-                title: "Cash Frenzy", 
-                description: "incremental game", 
-                image: "https://placehold.co/600x400/ffcce0/555?text=Cash Frenzy" 
+                title: "Desktop Telemetry", 
+                description: "A local background application written in Python and compiled into a standalone Rust executable to track keystrokes and real-world mouse transit distances.", 
+                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Telemetry+App" 
             },
             { 
-                title: "Money Mayhem", 
-                description: "incremental game", 
-                image: "https://placehold.co/600x400/ffcce0/555?text=Cash Frenzy" 
+                title: "Luduvo API Scripts", 
+                description: "Custom automated data collection scripts using Google Apps Script to run batch requests against the Luduvo API for tracking database items.", 
+                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Luduvo+Scripts" 
             },
             { 
-                title: "A.X.I.U.M", 
-                description: "yummy python",
-                image: "https://placehold.co/600x400/ffcce0/555?text=A.X.I.U.M" 
+                title: "Custom Compiler", 
+                description: "A modular custom programming language compiler (.cl) that parses variable definitions and event calls from text files using Python regex matching.",
+                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Custom+Compiler" 
             }
         ];
 
