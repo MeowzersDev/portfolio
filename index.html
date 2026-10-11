@@ -4,187 +4,386 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meowzers' Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <style>
         :root {
-            --primary-color: #7a0010; /* Dark Red Accent */
-            --pfp-border-color: #8b0000; /* Dark Red */
-            --background-color: #1a0529; /* Dark Purple */
-            --text-color: #e0ccff; /* Light Purple Text */
-            --secondary-color: #2b1142; /* Lighter Dark Purple for cards */
-            --heading-color: #ffffff; /* White headers */
+            /* Cutesy Pastel Dark Mode Palette */
+            --bg-main: #1e1b2e;         /* Deep soft dark violet */
+            --bg-card: #2d2842;         /* Slightly lighter violet for cards */
+            --bg-card-hover: #373151;   /* Hover state for cards */
+            --accent-pink: #ffb6c1;     /* Pastel pink */
+            --accent-purple: #d8b4fe;   /* Pastel light purple */
+            --text-main: #f3e8ff;       /* Very light purple/white */
+            --text-muted: #a78bfa;      /* Muted pastel purple */
+            --glow-pink: rgba(255, 182, 193, 0.4);
+            --glow-purple: rgba(216, 180, 254, 0.4);
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar styling for a cuter look */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent-purple); }
+
+        /* Social Media Style Banner & PFP */
+        .banner-container {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            background-color: var(--bg-card);
         }
         
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background-color: var(--background-color); 
-            color: var(--text-color); 
-            margin: 0; 
-            padding: 20px; 
-            text-align: center; 
+        @media (min-width: 768px) {
+            .banner-container { height: 350px; }
         }
-        
-        section {
-            margin-bottom: 40px;
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0));
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0.2));
         }
-        
-        .card { 
-            background: var(--secondary-color); 
-            border-radius: 20px; 
-            padding: 20px; 
-            margin: 10px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5); 
-            display: inline-block; 
-            width: 300px; 
-            border: 2px solid var(--primary-color); 
-            vertical-align: top; 
-            text-align: left; 
+
+        .profile-section {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            margin-top: -60px; /* Pulls content up to overlap banner */
+            z-index: 10;
         }
-        
-        .card img { 
-            border-radius: 10px; 
-            width: 100%; 
-            height: 160px; 
-            object-fit: cover; 
-            border: none; 
-            margin-bottom: 10px; 
+
+        .pfp-wrapper {
+            position: relative;
+            display: inline-block;
         }
-        
-        .grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 20px; 
+
+        .pfp-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 6px solid var(--bg-main);
+            object-fit: cover;
+            background-color: var(--bg-card);
+            box-shadow: 0 0 20px var(--glow-purple);
+            transition: transform 0.3s ease;
         }
-        
-        h1, h2, h3 { 
-            color: var(--heading-color); 
+
+        @media (min-width: 768px) {
+            .pfp-img {
+                width: 160px;
+                height: 160px;
+                border-width: 8px;
+            }
+            .profile-section {
+                margin-top: -80px;
+            }
         }
-        
-        h3 {
-            margin-top: 0;
+
+        .pfp-img:hover {
+            transform: scale(1.05) rotate(-5deg);
         }
-        
-        .profile-pic { 
-            border-radius: 50%; 
-            width: 120px; 
-            height: 120px; 
-            object-fit: cover; 
-            border: 3px solid var(--pfp-border-color); 
-        }
-        
-        .info-section {
+
+        /* Card Styles & Hover Effects */
+        .cute-card {
+            background-color: var(--bg-card);
+            border-radius: 24px;
+            border: 2px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: hidden;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            flex-direction: column;
         }
+
+        .cute-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--accent-pink);
+            background-color: var(--bg-card-hover);
+            box-shadow: 0 15px 30px -10px var(--glow-pink);
+        }
+
+        .cute-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--bg-main);
+            transition: transform 0.4s ease;
+        }
+
+        .cute-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Tags / Pills */
+        .cute-tag {
+            background: rgba(216, 180, 254, 0.1);
+            border: 1px solid rgba(216, 180, 254, 0.3);
+            color: var(--accent-purple);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin: 4px;
+        }
+
+        .cute-tag:hover {
+            background: rgba(216, 180, 254, 0.25);
+            border-color: var(--accent-pink);
+            color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* Typography overrides */
+        h1, h2, h3 { color: var(--text-main); font-weight: 800; }
+        p { color: var(--text-muted); font-weight: 600; }
         
-        .info-block {
-            background: var(--secondary-color);
-            padding: 15px 25px;
-            border-radius: 15px;
-            border: 2px solid var(--primary-color);
-            max-width: 300px;
-            text-align: left;
-            flex: 1;
-            min-width: 250px;
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple));
+            border-radius: 2px;
         }
     </style>
 </head>
 <body>
 
-    <section id="about">
-        <h1>Hi! I'm <span id="username">Meowzers</span></h1>
-        <img src="https://cdn.discordapp.com/avatars/269904483235004418/95c3651e2e09909d7af6d5b1351e9a9c.webp?size=1024" alt="Profile Picture" class="profile-pic">
-
-        <div id="contact" style="margin-top: 30px;">
-            <h2>Contact</h2>
-            <p>Reach out to me on Discord (meowzers1)</p>
+    <header>
+        <div class="banner-container fade-in">
+            <img id="banner-image" src="" alt="Banner" class="banner-img">
         </div>
-        
-        <div class="info-section">
-            <div class="info-block">
-                <h2>Software</h2>
-                <p>LibreSprite, AutoCAD, Blender, Figma, Google Apps</p>
+    </header>
+
+    <main class="profile-section pb-20">
+        <!-- Profile Header -->
+        <div class="flex flex-col md:flex-row md:items-end gap-4 fade-in delay-1">
+            <div class="pfp-wrapper">
+                <img id="profile-pic" src="" alt="Profile Picture" class="pfp-img">
             </div>
-            <div class="info-block">
-                <h2>Languages</h2>
-                <p>English, Dutch, Morse Code, JavaScript / TypeScript, Python, Lua/u, Rust</p>
-            </div>
-            <div class="info-block">
-                <h2>Misc Hobbies</h2>
-                <p>Chess, Reading, Writing, Coding, Game Design</p>
+            <div class="pb-2 md:pb-6">
+                <h1 id="user-name" class="text-3xl md:text-4xl tracking-tight mb-1"></h1>
+                <p id="user-handle" class="text-lg text-[var(--accent-purple)] m-0"></p>
             </div>
         </div>
-    </section>
 
-    <section id="creations">
-        <h2>My Creations</h2>
-        <div class="grid" id="creations-container"></div>
-    </section>
+        <!-- Bio & Info Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
+            
+            <!-- Left Column: About & Skills -->
+            <div class="lg:col-span-1 space-y-8 fade-in delay-2">
+                <!-- Bio -->
+                <div class="bg-[var(--bg-card)] p-6 rounded-3xl shadow-lg border border-[rgba(255,255,255,0.05)]">
+                    <h2 class="text-xl mb-3 flex items-center gap-2">✨ About Me</h2>
+                    <p id="user-bio" class="whitespace-pre-line leading-relaxed text-[var(--text-main)] font-normal"></p>
+                </div>
 
-    <section id="contributions">
-        <h2>My Contributions</h2>
-        <div class="grid" id="contributions-container"></div>
-    </section>
+                <!-- Tags Containers -->
+                <div id="tags-container" class="space-y-6">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Right Column: Portfolios -->
+            <div class="lg:col-span-2 space-y-12 fade-in delay-3">
+                
+                <!-- Creations -->
+                <section>
+                    <h2 class="text-3xl section-title">🎨 My Creations</h2>
+                    <div id="creations-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+                <!-- Contributions -->
+                <section>
+                    <h2 class="text-3xl section-title">🤝 Contributions</h2>
+                    <div id="contributions-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+                        <!-- Populated by JS -->
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
 
     <script>
-        const creations = [
-             { 
-                title: "The Unofficial Luduvo Archive", 
-                description: "yummy data mining", 
-                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Luduvo+Archive" 
+        /**
+         * ==========================================
+         * ⚙️ CONFIGURATION OBJECT
+         * Edit everything here to customize the page!
+         * ==========================================
+         */
+        const CONFIG = {
+            profile: {
+                name: "Meowzers",
+                handle: "@meowzers1 (Discord)",
+                bio: "Hi! I'm big on game dev and learning new things. 🛠️\n\n(i will not accept random friend requests)",
+                avatarUrl: "https://cdn.discordapp.com/avatars/269904483235004418/95c3651e2e09909d7af6d5b1351e9a9c.webp?size=1024",
+                bannerUrl: "https://images.unsplash.com/photo-1534161754452-9b2d8ebdf939?auto=format&fit=crop&w=1200&q=80", // Dreamy aesthetic banner fallback
             },
-            { 
-                title: "Fernwood", 
-                description: "wood game", 
-                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Fernwood" 
-            },
-            { 
-                title: "Money Mayhem", 
-                description: "cash frenzy 2", 
-                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Money+Mayhem" 
-            },
-            { 
-                title: "Cash Frenzy", 
-                description: "number go up game", 
-                image: "https://placehold.co/600x400/2b1142/e0ccff?text=Cash+Frenzy" 
-            },
-            { 
-                title: "A.X.I.U.M", 
-                description: "discord bot",
-                image: "https://placehold.co/600x400/2b1142/e0ccff?text=A.X.I.U.M" 
-            }
-        ];
+            
+            // Edit these categories and lists to update your soft tags
+            attributes: [
+                {
+                    title: "💻 Software",
+                    items: ["LibreSprite", "AutoCAD", "Blender", "Figma", "Google Apps"]
+                },
+                {
+                    title: "🗣️ Languages",
+                    items: ["English", "Dutch", "Morse Code", "JavaScript", "TypeScript", "Python", "Lua/u", "Rust"]
+                },
+                {
+                    title: "🎮 Misc Hobbies",
+                    items: ["Chess ♟️", "Reading 📚", "Writing ✍️", "Coding ⌨️", "Game Design 🎲"]
+                }
+            ],
 
-        const contributions = [
-            { 
-                title: "example", 
-                description: "placeholder",
-                image: "" 
-            },
-        ];
+            creations: [
+                { 
+                    title: "The Unofficial Luduvo Archive", 
+                    description: "yummy data mining 📊", 
+                    image: "https://placehold.co/600x400/373151/d8b4fe?text=Luduvo+Archive" 
+                },
+                { 
+                    title: "Fernwood", 
+                    description: "wood game 🌲", 
+                    image: "https://placehold.co/600x400/373151/d8b4fe?text=Fernwood" 
+                },
+                { 
+                    title: "Money Mayhem", 
+                    description: "cash frenzy 2 💸", 
+                    image: "https://placehold.co/600x400/373151/d8b4fe?text=Money+Mayhem" 
+                },
+                { 
+                    title: "Cash Frenzy", 
+                    description: "number go up game 📈", 
+                    image: "https://placehold.co/600x400/373151/d8b4fe?text=Cash+Frenzy" 
+                },
+                { 
+                    title: "A.X.I.U.M", 
+                    description: "discord bot 🤖",
+                    image: "https://placehold.co/600x400/373151/d8b4fe?text=A.X.I.U.M" 
+                }
+            ],
 
-        function renderItems(containerId, data) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            data.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'card';
-                let imageHtml = item.image ? `<img src="${item.image}" alt="${item.title}">` : '';
-                div.innerHTML = `
-                    ${imageHtml}
-                    <h3>${item.title}</h3>
-                    <p>${item.description}</p>
-                `;
-                container.appendChild(div);
-            });
-        }
+            contributions: [
+                { 
+                    title: "Project Name", 
+                    description: "Helped with map design and scripting.",
+                    image: "https://placehold.co/600x400/373151/ffb6c1?text=Contribution+1" 
+                }
+            ]
+        };
 
+        /**
+         * ==========================================
+         * 🪄 RENDERING LOGIC (Do not touch unless modifying structure)
+         * ==========================================
+         */
         document.addEventListener('DOMContentLoaded', () => {
-            renderItems('creations-container', creations);
-            renderItems('contributions-container', contributions);
+            
+            // 1. Load Profile Data
+            document.getElementById('banner-image').src = CONFIG.profile.bannerUrl;
+            document.getElementById('profile-pic').src = CONFIG.profile.avatarUrl;
+            document.getElementById('user-name').textContent = CONFIG.profile.name;
+            document.getElementById('user-handle').textContent = CONFIG.profile.handle;
+            document.getElementById('user-bio').textContent = CONFIG.profile.bio;
+            document.getElementById('contact-btn').href = CONFIG.profile.contactLink;
+
+            // 2. Render Attribute Tags (Software, Languages, etc)
+            const tagsContainer = document.getElementById('tags-container');
+            CONFIG.attributes.forEach(attr => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'bg-[var(--bg-card)] p-5 rounded-3xl shadow-md border border-[rgba(255,255,255,0.05)]';
+                
+                const title = document.createElement('h3');
+                title.className = 'text-lg mb-3 flex items-center gap-2';
+                title.textContent = attr.title;
+                sectionDiv.appendChild(title);
+
+                const pillsDiv = document.createElement('div');
+                pillsDiv.className = 'flex flex-wrap';
+                attr.items.forEach(item => {
+                    const span = document.createElement('span');
+                    span.className = 'cute-tag';
+                    span.textContent = item;
+                    pillsDiv.appendChild(span);
+                });
+
+                sectionDiv.appendChild(pillsDiv);
+                tagsContainer.appendChild(sectionDiv);
+            });
+
+            // 3. Render Cards Function
+            const renderCards = (containerId, dataArray) => {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                dataArray.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    // Add a staggered animation delay based on index
+                    card.className = `cute-card fade-in`;
+                    card.style.animationDelay = `${0.3 + (index * 0.1)}s`;
+                    
+                    card.innerHTML = `
+                        <div class="overflow-hidden">
+                            <img src="${item.image}" alt="${item.title}">
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-center">
+                            <h3 class="text-xl mb-2">${item.title}</h3>
+                            <p class="text-sm m-0">${item.description}</p>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            };
+
+            // Render both grids
+            renderCards('creations-grid', CONFIG.creations);
+            renderCards('contributions-grid', CONFIG.contributions);
         });
     </script>
 </body>
